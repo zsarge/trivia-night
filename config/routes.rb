@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :hosts
   resources :players, only: [ :new, :create ]
   get "game/start"
 
