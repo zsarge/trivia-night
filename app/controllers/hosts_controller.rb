@@ -26,7 +26,7 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.save
-        format.html { redirect_to "/game/host" }
+        format.html { redirect_to game_play_path(game_id: @host.game.id) }
         format.json { render :show, status: :created, location: @host }
       else
         format.html { render :new, status: :unprocessable_entity }
