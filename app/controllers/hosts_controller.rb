@@ -13,6 +13,7 @@ class HostsController < ApplicationController
   # GET /hosts/new
   def new
     @host = Host.new
+    @host.games.build
   end
 
   # GET /hosts/1/edit
@@ -65,6 +66,9 @@ class HostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def host_params
-      params.expect(host: [ :name ])
+    params.require(:host).permit(
+      :name,
+      games_attributes: [ :id, :name ] # Permit nested game attributes
+    )
     end
 end

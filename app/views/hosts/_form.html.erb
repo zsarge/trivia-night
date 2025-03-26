@@ -6,15 +6,27 @@
       <ul>
         <% host.errors.each do |error| %>
           <li><%= error.full_message %></li>
+          <% if error.attribute.to_s.start_with?("games.") %>
+            (Game: <%= error.message %>)
+          <% end %>
         <% end %>
       </ul>
     </div>
   <% end %>
+  
 
   <div>
-    <%= form.label :name, style: "display: block" %>
+    <%= form.label :name, "Host Name", style: "display: block" %>
     <%= form.text_field :name %>
   </div>
+
+   <%# Nested Game fields %>
+  <%= form.fields_for :games do |game_form| %>
+    <div>
+      <%= game_form.label :name, "Game Name", style: "display: block" %>
+      <%= game_form.text_field :name %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>
