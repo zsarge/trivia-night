@@ -20,11 +20,10 @@
     <%= form.text_field :name %>
   </div>
 
-   <%# Nested Game fields %>
-  <%= form.fields_for :games do |game_form| %>
+  <%= form.fields_for :game do |game_form| %>
     <div>
       <%= game_form.label :name, "Game Name", style: "display: block" %>
-      <%= game_form.text_field :name %>
+      <%= game_form.text_field :name, placeholder: "Trivia Night!" %>
     </div>
   <% end %>
 

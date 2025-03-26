@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :players, only: [ :new, :create ]
   resources :hosts, only: [ :new, :create ]
   get "game/start"
+  get "game/host"
+  get "game/play"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

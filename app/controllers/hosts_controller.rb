@@ -13,7 +13,7 @@ class HostsController < ApplicationController
   # GET /hosts/new
   def new
     @host = Host.new
-    @host.games.build
+    @host.build_game
   end
 
   # GET /hosts/1/edit
@@ -26,7 +26,7 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.save
-        format.html { redirect_to @host, notice: "Host was successfully created." }
+        format.html { redirect_to "/game/host" }
         format.json { render :show, status: :created, location: @host }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,14 +61,14 @@ class HostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_host
-      @host = Host.find(params.expect(:id))
+      @host = Host.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def host_params
-    params.require(:host).permit(
-      :name,
-      games_attributes: [ :id, :name ] # Permit nested game attributes
-    )
+      params.require(:host).permit(
+        :name,
+        game_attributes: [ :id, :name ] # Permit nested game attributes
+      )
     end
 end
