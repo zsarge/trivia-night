@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to game_host_path(game_id: @player.game_id) }
+        format.html { redirect_to game_play_path(game_id: @player.game_id) }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
