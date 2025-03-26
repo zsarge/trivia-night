@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :host
   has_many :players
+  has_many :rounds, dependent: :destroy
   validates_presence_of :name
 
   TIMEOUT = 1 # num days to expire after

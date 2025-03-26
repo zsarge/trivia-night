@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_26_030645) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_26_034228) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.integer "host_id"
@@ -31,4 +31,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_26_030645) do
     t.datetime "updated_at", null: false
     t.integer "game_id"
   end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "round_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_rounds_on_game_id"
+  end
+
+  add_foreign_key "rounds", "games"
 end

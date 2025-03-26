@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get "round/new"
   resources :players, only: [ :new, :create ]
   resources :hosts, only: [ :new, :create ]
+  resources :rounds, only: [ :new ]
   get "game/start"
   get "game/host"
   get "game/play"
